@@ -1,0 +1,31 @@
+<form [formGroup]="tareaForm" (ngSubmit)="crearTarea()" class="mt-3">
+  <div class="mb-3">
+    <label for="" class="form-label">Titulo</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="title"
+    />
+    @if (tareaForm.get('title')?.hasError('required')&&
+    tareaForm.get('title')?.touched) {
+    <span class="text-danger">Introduzca un titutlo</span>
+    }
+  </div>
+  <div class="mb-3">
+    <label for="" class="form-label">Descripción</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="description"
+    />
+    @if (tareaForm.get('description')?.hasError('required') &&
+    tareaForm.get('description')?.touched) {
+    <span class="text-danger">Introduzca una descripción</span>
+    }
+  </div>
+  <button [disabled]="!tareaForm.valid" type="submit" class="btn btn-primary">
+    Crear
+  </button>
+
+</form>
+

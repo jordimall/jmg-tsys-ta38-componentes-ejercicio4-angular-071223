@@ -1,0 +1,35 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Descripción</th>
+      <th>estado</th>
+      <th>Entrgar</th>
+      <th>Borrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (tarea of listTareas; track $index) {
+    <tr
+      [ngClass]="{
+        'table-success': tarea.getState(),
+        'table-secondary': !tarea.getState()
+      }"
+    >
+      <td>{{ tarea.getTitle() }}</td>
+      <td>{{ tarea.getDescription() }}</td>
+      <td>@if (tarea.getState()) { Entregada } @else {Sin entregar}</td>
+      <td>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name="state"
+          id="state"
+          (change)="modificarTarea($index)"
+        />
+      </td>
+      <td><button (click)="eliminarTarea($index)">Borrar</button></td>
+    </tr>
+    }
+  </tbody>
+</table>
